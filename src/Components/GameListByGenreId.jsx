@@ -7,7 +7,7 @@ function GamesByGenresId({ gameList, selctedGenresName }) {
   return (
     <div>
       <h2 className="font-bold text-[30px] dark:text-white mt-5">
-        {selctedGenresName} Popular Games
+        Popular {selctedGenresName} Games
       </h2>
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
