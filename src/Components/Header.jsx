@@ -1,11 +1,16 @@
-import React from "react";
+import { useContext, useEffect, useState } from "react";
 import Logo from "../assets/logo.svg";
 import { HiMiniMagnifyingGlassCircle, HiMoon, HiSun } from "react-icons/hi2";
-import { useState } from "react";
+import { ThemeContext } from "../Context/ThemeContext";
 
 function Header() {
   //
-  const [darkMode, setDarkMode] = useState(true);
+  const [toggle, setToggle] = useState(true);
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    console.log("Theme", theme);
+  }, []);
 
   return (
     <div className="flex items-center p-5">
@@ -15,20 +20,26 @@ function Header() {
         <input
           type="text"
           placeholder="Search Games"
-          className="px-5 bg-transparent dark:bg-cyan-500 outline-none"
+          className="px-5 bg-transparent outline-none"
         />
       </div>
 
       <div>
-        {darkMode ? (
+        {theme == "light" ? (
           <HiMoon
-            className="text-[35px] bd-slate-200 text-black p-1 rounded-full cursor-pointer"
-            onClick={() => setDarkMode(!darkMode)}
+            className="text-[35px] bg-slate-200 text-black p-1 rounded-full cursor-pointer"
+            onClick={() => {
+              setTheme("dark");
+              localStorage.setItem("theme", "dark");
+            }}
           />
         ) : (
           <HiSun
-            className="text-[35px] bd-slate-200 text-black p-1 rounded-full cursor-pointer"
-            onClick={() => setDarkMode(!darkMode)}
+            className="text-[35px] bg-slate-200 text-black p-1 rounded-full cursor-pointer"
+            onClick={() => {
+              setTheme("light");
+              localStorage.setItem("theme", "light");
+            }}
           />
         )}
       </div>
